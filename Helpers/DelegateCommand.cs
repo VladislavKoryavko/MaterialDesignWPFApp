@@ -22,12 +22,30 @@ namespace MaterialMesignWPFApp.Helpers
             _execute = execute;
             _canExecute = canExecute;
         }
+
         #endregion
 
         #region Icommand members
         public bool CanExecute(object parametr)
         {
             return _canExecute?.Invoke(parametr) ?? true; 
+        }
+
+        public void Execute(object parameter)
+        {
+            _execute(parameter);
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add
+            {
+                CommandManager.RequerySuggested += value;     
+            }
+            remove
+            {
+                CommandManager.RequerySuggested -= value;
+            }
         }
         #endregion
     }
