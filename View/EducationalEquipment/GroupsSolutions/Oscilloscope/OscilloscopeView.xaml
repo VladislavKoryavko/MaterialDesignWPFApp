@@ -1,0 +1,190 @@
+﻿<Window
+    x:Class="DidaktikaApp.View.EducationalEquipment.GroupsSolutions.Oscilloscope.OscilloscopeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Oscilloscope="clr-namespace:DidaktikaApp.ViewModel.EducationalEquipment.Oscilloscope"
+    xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DidaktikaApp.View.EducationalEquipment.GroupsSolutions.Oscilloscope"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="OscilloscopeView"
+    Width="1024"
+    Height="768"
+    ShowInTaskbar="False"
+    SizeToContent="Manual"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <Oscilloscope:OscilloscopeViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="61*" />
+            <RowDefinition Height="691*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#FF3A49B7">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="6*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Background="White"
+                BorderBrush="#FF3A49B7"
+                Foreground="#FF3A49B7"
+                Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                ToolTip="MaterialDesignFloatingActionMiniDarkButton">
+                <materialDesign:PackIcon
+                    Width="24"
+                    Height="24"
+                    Kind="CogSyncOutline" />
+            </Button>
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Background="White"
+                BorderBrush="#FF3A49B7"
+                Foreground="#FF3A49B7"
+                Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                ToolTip="MaterialDesignFloatingActionMiniDarkButton">
+                <materialDesign:PackIcon
+                    Width="24"
+                    Height="24"
+                    Kind="HomeCircleOutline" />
+            </Button>
+            <materialDesign:ColorZone
+                Grid.Row="1"
+                Grid.Column="2"
+                Margin="16,0,0,0"
+                Padding="8,4,8,4"
+                VerticalAlignment="Center"
+                Panel.ZIndex="1"
+                materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                CornerRadius="2"
+                Mode="Standard">
+                <Grid>
+                    <ComboBox
+                        x:Name="ComboBoxChoiseTimeLineDivision"
+                        Grid.Column="0"
+                        MinWidth="100"
+                        Margin="8,0,0,0"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="s/div"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0"
+                        IsEditable="True"
+                        ItemsSource="{Binding TimeLineDivisions}"
+                        SelectedItem="{Binding selectSolution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedValue="{Binding SelectedTimeLineDevider}">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                </Grid>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone
+                Grid.Row="1"
+                Grid.Column="3"
+                Margin="16,0,0,0"
+                Padding="8,4,8,4"
+                VerticalAlignment="Center"
+                Panel.ZIndex="1"
+                materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                CornerRadius="2"
+                Mode="Standard">
+                <Grid>
+                    <ComboBox
+                        x:Name="ComboBoxChoiseVoltageScaleDivider"
+                        Grid.Column="0"
+                        MinWidth="100"
+                        Margin="8,0,0,0"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="V/div"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0"
+                        IsEditable="True"
+                        ItemsSource="{Binding VoltageScaleDividers}"
+                        SelectedItem="{Binding selectSolution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedValue="{Binding SelectedVoltageScaleDivider}">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                </Grid>
+            </materialDesign:ColorZone>
+            <materialDesign:ColorZone
+                Grid.Row="1"
+                Grid.Column="4"
+                Margin="16,0,0,0"
+                Padding="8,4,8,4"
+                VerticalAlignment="Center"
+                Panel.ZIndex="1"
+                materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                CornerRadius="2"
+                Mode="Standard">
+                <Grid>
+                    <ComboBox
+                        x:Name="ComboBoxTrigger"
+                        Grid.Column="0"
+                        MinWidth="100"
+                        Margin="8,0,0,0"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.Hint="Тригер"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0"
+                        IsEditable="True"
+                        ItemsSource="{Binding Triggers}"
+                        SelectedItem="{Binding selectSolution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedValue="{Binding SelectedTrigger}">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                </Grid>
+            </materialDesign:ColorZone>
+        </Grid>
+        <Grid Grid.Row="1">
+            <materialDesign:Card
+                Margin="10,10,10,10"
+                Padding="10"
+                materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                <Wpf:CartesianChart
+                    Width="Auto"
+                    Height="Auto"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Series="{Binding SeriesCollectionPoints, Mode=OneWay}"
+                    LegendLocation="Right"
+                    Hoverable="False">
+                    <Wpf:CartesianChart.AxisY>
+                        <Wpf:Axis Title="Напряжение"  />
+                    </Wpf:CartesianChart.AxisY>
+                    <Wpf:CartesianChart.AxisX>
+                        <Wpf:Axis Title="Врем" Labels="{Binding Labels}" />
+                    </Wpf:CartesianChart.AxisX>
+                </Wpf:CartesianChart>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</Window>

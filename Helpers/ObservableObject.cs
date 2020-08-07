@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace MaterialMesignWPFApp.Helpers
+namespace DidaktikaApplication.Helpers
 {
     public class ObservableObject : INotifyPropertyChanged
     {

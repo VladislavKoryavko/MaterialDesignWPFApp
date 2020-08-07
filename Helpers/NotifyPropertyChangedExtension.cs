@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MaterialMesignWPFApp.Helpers
+namespace DidaktikaApplication.Helpers
 {
     public static class NotifyPropertyChangedExtension
     {

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
-namespace MaterialMesignWPFApp.Helpers
+namespace DidaktikaApplication.Helpers
 {
     public class DelegateCommand: ICommand
     {

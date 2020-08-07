@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialMesignWPFApp", "MaterialMesignWPFApp.csproj", "{D9FD05F1-10A9-4149-9953-B92F84A1F20A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DidaktikaApp", "DidaktikaApp.csproj", "{D9FD05F1-10A9-4149-9953-B92F84A1F20A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
