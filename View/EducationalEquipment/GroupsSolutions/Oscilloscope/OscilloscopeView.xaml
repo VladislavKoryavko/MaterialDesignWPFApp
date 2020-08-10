@@ -8,6 +8,7 @@
     xmlns:local="clr-namespace:DidaktikaApp.View.EducationalEquipment.GroupsSolutions.Oscilloscope"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:oxy="http://oxyplot.org/wpf"
     Title="OscilloscopeView"
     Width="1024"
     Height="768"
@@ -16,9 +17,7 @@
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     mc:Ignorable="d">
-    <Window.DataContext>
-        <Oscilloscope:OscilloscopeViewModel />
-    </Window.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -60,6 +59,8 @@
                 Background="White"
                 BorderBrush="#FF3A49B7"
                 Foreground="#FF3A49B7"
+                Command="{Binding StartConnection}"
+                CommandParameter="{Binding BitsToSend}"
                 Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                 ToolTip="MaterialDesignFloatingActionMiniDarkButton">
                 <materialDesign:PackIcon
@@ -168,23 +169,30 @@
             <materialDesign:Card
                 Margin="10,10,10,10"
                 Padding="10"
-                materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                <Wpf:CartesianChart
-                    Width="Auto"
-                    Height="Auto"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Series="{Binding SeriesCollectionPoints, Mode=OneWay}"
-                    LegendLocation="Right"
-                    Hoverable="False">
-                    <Wpf:CartesianChart.AxisY>
-                        <Wpf:Axis Title="Напряжение"  />
-                    </Wpf:CartesianChart.AxisY>
-                    <Wpf:CartesianChart.AxisX>
-                        <Wpf:Axis Title="Врем" Labels="{Binding Labels}" />
-                    </Wpf:CartesianChart.AxisX>
-                </Wpf:CartesianChart>
-            </materialDesign:Card>
+                materialDesign:ShadowAssist.ShadowDepth="Depth1"/>
+            <oxy:Plot Grid.Row="1" Title="Осцилограф">
+                <oxy:Plot.Axes>
+                    <oxy:LinearAxis MajorStep="20" MinorGridlineStyle="Dash" MajorGridlineStyle="Solid" Maximum="256" Minimum="0" Position="Left" />
+                    <oxy:LinearAxis MinorGridlineStyle="Dash" MajorGridlineStyle="Dash" Position="Bottom" />
+                </oxy:Plot.Axes>
+                <oxy:Plot.Series>
+                    <oxy:LineSeries Title="Value" DataFieldX="X"
+                                DataFieldY="Y"
+                                
+                                ItemsSource="{Binding Graphic.ListValuesOnGraphic}"
+                                StrokeThickness="2" Color="Blue" />
+                    <oxy:LineSeries Title="Maximum" DataFieldX="Time"
+                                DataFieldY="Maximum"
+                                ItemsSource="{Binding Measurements}"
+                                LineStyle="Dash" StrokeThickness="2"
+                                Color="Red" />
+                    <!--<oxy:LineSeries Title="Minimum" DataFieldX="Time"
+                                DataFieldY="Minimum"
+                                ItemsSource="{Binding Measurements}"
+                                LineStyle="Dot" StrokeThickness="2"
+                                Color="Green" />-->
+                </oxy:Plot.Series>
+            </oxy:Plot>
         </Grid>
     </Grid>
 </Window>

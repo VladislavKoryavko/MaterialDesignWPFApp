@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DidaktikaApp", "DidaktikaApp.csproj", "{D9FD05F1-10A9-4149-9953-B92F84A1F20A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Didaktika.PD.FTDI", "..\Libs\Connect\PD_CONNECTION_DLL-release-1.0dnf4.0\Didaktika.PD.FTDI\Didaktika.PD.FTDI\Didaktika.PD.FTDI.csproj", "{CA936A53-E780-44F3-8FE5-7462D6076746}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D9FD05F1-10A9-4149-9953-B92F84A1F20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9FD05F1-10A9-4149-9953-B92F84A1F20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9FD05F1-10A9-4149-9953-B92F84A1F20A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA936A53-E780-44F3-8FE5-7462D6076746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA936A53-E780-44F3-8FE5-7462D6076746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA936A53-E780-44F3-8FE5-7462D6076746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA936A53-E780-44F3-8FE5-7462D6076746}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

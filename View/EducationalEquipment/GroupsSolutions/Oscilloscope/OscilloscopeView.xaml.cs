@@ -11,7 +11,7 @@ namespace DidaktikaApp.View.EducationalEquipment.GroupsSolutions.Oscilloscope
         public OscilloscopeView()
         {
             InitializeComponent();
-            //DataContext = new OscilloscopeViewModel();
+            DataContext = new OscilloscopeViewModel();
         }
     }
 }

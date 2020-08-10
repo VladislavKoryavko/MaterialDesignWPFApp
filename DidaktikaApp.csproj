@@ -22,6 +22,7 @@
     <PackageReference Include="MaterialDesignColors" Version="1.2.6" />
     <PackageReference Include="MaterialDesignThemes" Version="3.1.3" />
     <PackageReference Include="OxyPlot.Core" Version="2.0.0" />
+    <PackageReference Include="OxyPlot.Wpf" Version="2.0.0" />
     <PackageReference Include="Prism.Core" Version="7.2.0.1422" />
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
     <PackageReference Include="ShowMeTheXAML" Version="1.0.12" />
@@ -30,6 +31,16 @@
 
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Libs\Connect\PD_CONNECTION_DLL-release-1.0dnf4.0\Didaktika.PD.FTDI\Didaktika.PD.FTDI\Didaktika.PD.FTDI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FTD2XX_NET">
+      <HintPath>..\Libs\Connect\Didaktika.FTDI.Protocols\Didaktika.FTDI.Protocols.Oscilloscope.DemoWPF\bin\Debug\FTD2XX_NET.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
