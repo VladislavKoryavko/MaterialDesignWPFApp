@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SettingsConnections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BitsToSend>
+    <string>AA</string>
+    <string>FF</string>
+    <string>FF</string>
+    <string>00</string>
+    <string>00</string>
+    <string>cf</string>
+    <string>83</string>
+    <string>7f</string>
+    <string>20</string>
+    <string>f4</string>
+    <string>01</string>
+    <string>7f</string>
+    <string>7f</string>
+    <string>7f</string>
+    <string>25</string>
+    <string>c3</string>
+    <string>66</string>
+    <string>6f</string>
+    <string>00</string>
+    <string>01</string>
+  </BitsToSend>
+  <CountBits>20</CountBits>
+  <LengthPackage>1007</LengthPackage>
+  <BaudRate>921600</BaudRate>
+  <DataBits>8</DataBits>
+  <StopBits>2</StopBits>
+  <Parity>4</Parity>
+</SettingsConnections>

@@ -7,10 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Model\EducationalEquipment\GroupsSolutions\Oscilloscope\Settings\SettingConnections.xml" />
     <None Remove="Model\ModelApp.xml" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Model\EducationalEquipment\GroupsSolutions\Oscilloscope\Settings\SettingConnections.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Model\ModelApp.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -7,7 +7,7 @@ namespace DidaktikaApp.Model.EducationalEquipment.GroupsSolutions.Oscilloscope.C
     public static class ServiceConnectDevice
     {
         //private BlockRead block = new BlockRead();
-        private static ConnectDevice connectDevice = new ConnectDevice();
+        public static ConnectDevice connectDevice = new ConnectDevice();
 
         static ServiceConnectDevice()
         {

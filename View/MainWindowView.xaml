@@ -76,9 +76,7 @@
                                     <Binding
                                         Mode="TwoWay"
                                         Path="selectSolution"
-                                        UpdateSourceTrigger="PropertyChanged">
-                                        
-                                    </Binding>
+                                        UpdateSourceTrigger="PropertyChanged" />
                                 </ComboBox.SelectedItem>
                                 <ComboBox.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -87,14 +85,14 @@
                                 </ComboBox.ItemsPanel>
                             </ComboBox>
                             <TextBox
-                                Visibility="Hidden"
                                 Grid.Column="1"
                                 MinWidth="200"
                                 Margin="8,0,0,0"
                                 VerticalAlignment="Center"
                                 materialDesign:HintAssist.Hint="Стенды"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                BorderThickness="0" />
+                                BorderThickness="0"
+                                Visibility="Hidden" />
                         </Grid>
                     </materialDesign:ColorZone>
                     <Button
