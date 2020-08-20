@@ -16,6 +16,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 
 namespace DidaktikaApp.Model.EducationalEquipment.Oscilloscope
 {
@@ -25,6 +26,46 @@ namespace DidaktikaApp.Model.EducationalEquipment.Oscilloscope
         private bool OnLine = false;
 
         #region Setting control panel
+
+        #region Timeline dividers
+
+        public static List<TimeLineDivider> TimeLineDividers { get; set; } = new List<TimeLineDivider> {
+            new TimeLineDivider(0, "2 ns", 0.89, "ns", 0, 20, 2, "ns"),
+            new TimeLineDivider(0, "5 ns", 0.89, "ns", 0, 50, 5, "ns"),
+            new TimeLineDivider(0, "10 ns", 0.89, "ns", 0, 100, 10, "ns"),
+            new TimeLineDivider(0, "20 ns", 0.89, "ns", 0, 200, 20, "ns"),
+            new TimeLineDivider(0, "50 ns", 0.89, "ns", 0, 500, 50, "ns"),
+            new TimeLineDivider(0, "100 ns", 0.89, "ns", 0, 1000, 100, "ns"),
+            new TimeLineDivider(0, "200 ns", 0.89, "ns", 0, 2000, 200, "ns"),
+            new TimeLineDivider(1, "500 ns", 1.7647, "ns", 0, 5000, 500, "ns"),
+            new TimeLineDivider(0, "1 us", 0.89, "us", 0, 1000, 100, "us"),
+            new TimeLineDivider(0, "2 us", 0.89, "us", 0, 1000, 100, "us"),
+            new TimeLineDivider(0, "5 us", 0.89, "us", 0, 500, 50, "us"),
+            new TimeLineDivider(0, "10 us", 0.89, "us", 0, 500, 50, "us"),
+            new TimeLineDivider(0, "20 us", 0.89, "us", 0, 500, 50, "us"),
+            new TimeLineDivider(0, "50 us", 0.89, "us", 0, 500, 50, "us"),
+            new TimeLineDivider(0, "100 us", 0.89, "us", 0, 500, 50, "us"),
+            new TimeLineDivider(0, "200 us", 0.89, "us", 0, 500, 50, "us"),
+            new TimeLineDivider(1, "500 us", 1.7647, "us", 0, 450, 50, "us") };
+
+
+        private TimeLineDivider selectTimeLineDivider = TimeLineDividers[0];
+        public TimeLineDivider SelectTimeLineDivider
+        {
+            get => selectTimeLineDivider;
+            set
+            {
+                selectTimeLineDivider = value;
+                //Set settings byte voltage divider for forward to oscilloscope
+                //byte setByte = (byte)((SettinsForForward[(int)SettingsBytes.DivVoltage] & 0b11110000) | value.ForSend);
+                //SettinsForForward[(int)SettingsBytes.DivVoltage] = setByte;
+                RaisePropertyChanged(nameof(SelectTimeLineDivider));
+            }
+        }
+
+        public ListCollectionView lcv { get; set; } = new ListCollectionView(TimeLineDividers);
+        #endregion
+
         #region Voltage dividers
         public static List<VoltageDivider> VoltageScaleDividers { get; set; } = new List<VoltageDivider> {
             new VoltageDivider(0, "200 mV", 0.89, "mV", -200, 200, 20),
@@ -67,21 +108,56 @@ namespace DidaktikaApp.Model.EducationalEquipment.Oscilloscope
         }
         #endregion
 
+
+        #region AC/DC
+        public static List<ACDCSettings> TypeCurentOnChanels { get; set; } = new List<ACDCSettings> { new ACDCSettings (1, "AC"), new ACDCSettings (0, "DC") };
+
+        private ACDCSettings selectTypeCurentOnChanelA = TypeCurentOnChanels[0];
+        private ACDCSettings selectTypeCurentOnChanelB = TypeCurentOnChanels[0];
+
+        public ACDCSettings SelectTypeCurentOnChanelA
+        {
+            get => selectTypeCurentOnChanelA;
+            set
+            {
+                selectTypeCurentOnChanelA = value;
+                //Set settings byte voltage divider for forward to oscilloscope
+                
+                //byte setByte = (byte)((SettinsForForward[(int)SettingsBytes.DivVoltage] & 0b11110000) | value.ForSend);
+                //SettinsForForward[(int)SettingsBytes.DivVoltage] = setByte;
+                //RaisePropertyChanged(nameof(SelectVoltageScaleDividerA));
+            }
+        }
+        public ACDCSettings SelectTypeCurentOnChanelB
+        {
+            get => selectTypeCurentOnChanelB;
+            set
+            {
+                selectTypeCurentOnChanelB = value;
+                
+                //byte setByte = (byte)((SettinsForForward[(int)SettingsBytes.DivVoltage] & 0b00001111) | value.ForSend << 4);
+                //SettinsForForward[(int)SettingsBytes.DivVoltage] = setByte;
+                //RaisePropertyChanged(nameof(SelectVoltageScaleDividerB));
+            }
+        }
+        #endregion
+
+
         #region Trigger
-        public static List<TriggerOscillosxope> TriggerStates { get; set; } = new List<TriggerOscillosxope> (){ 
-            new TriggerOscillosxope(0b00011100, "Нет"), 
-            new TriggerOscillosxope(0b00011100, "Канал А (по нарастанию)"), 
-            new TriggerOscillosxope(0b00011100, "Канал А (по спаду)"), 
-            new TriggerOscillosxope(0b00011100, "Канал Б (по нарастанию)"), 
+        public static List<TriggerOscillosxope> TriggerStates { get; set; } = new List<TriggerOscillosxope>(){
+            new TriggerOscillosxope(0b00011100, "Нет"),
+            new TriggerOscillosxope(0b00011100, "Канал А (по нарастанию)"),
+            new TriggerOscillosxope(0b00011100, "Канал А (по спаду)"),
+            new TriggerOscillosxope(0b00011100, "Канал Б (по нарастанию)"),
             new TriggerOscillosxope(0b00011100, "Канал Б (по спаду)"), };
 
         private TriggerOscillosxope selectTriger = TriggerStates[0];
-        public TriggerOscillosxope SelectTriger 
-        { 
+        public TriggerOscillosxope SelectTriger
+        {
             get => selectTriger;
             set
             {
-                if(value == null)
+                if (value == null)
                 {
                     value = TriggerStates[0];
                 }
@@ -101,8 +177,22 @@ namespace DidaktikaApp.Model.EducationalEquipment.Oscilloscope
 
         #endregion
 
-        public List<string> TypeChanelCurent = new List<string> { "AC", "DC" };
-        public List<string> Filtrations = new List<string>();
+
+        #region Filtrations
+        //public List<string> TypeChanelCurent = new List<string> { "AC", "DC" };
+        public List<string> Filtrations { get; set; } = new List<string>();
+
+        private int selectFiltration = 0;
+        public int SelectFiltration
+        {
+            get { return selectFiltration; }
+            set
+            {
+                selectFiltration = value;
+                RaisePropertyChanged(nameof(SelectFiltration));
+            }
+        }
+        #endregion
         #endregion
 
         #region OxyPlot
@@ -153,7 +243,6 @@ namespace DidaktikaApp.Model.EducationalEquipment.Oscilloscope
         #region Data Out/In
         private byte[] settingsForForward;
         public byte[] SettinsForForward { get => settingsForForward; set => settingsForForward = value; }
-       
 
         private byte[] dataFromOscillograf;
 
@@ -165,9 +254,9 @@ namespace DidaktikaApp.Model.EducationalEquipment.Oscilloscope
         public OscilloscopeModel()
         {
             Filtrations.Clear();
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i <= 100; i++)
             {
-                // Filtrations.Add((string)i);
+                 Filtrations.Add(i.ToString());
             };
 
             SettingsConnections = UtilSerialized.Deserialized<SettingsConnections>(Environment.CurrentDirectory + "\\Model\\EducationalEquipment\\GroupsSolutions\\Oscilloscope\\Settings\\SettingConnections.xml");
@@ -183,6 +272,8 @@ namespace DidaktikaApp.Model.EducationalEquipment.Oscilloscope
             dataFromOscillograf = new byte[SettingsConnections.LengthPackage];
 
             //SelectVoltageScaleDividerA = new VoltageDivider(0, "200 mV");
+            
+            lcv.GroupDescriptions.Add(new PropertyGroupDescription("Group"));
         }
         #endregion
 

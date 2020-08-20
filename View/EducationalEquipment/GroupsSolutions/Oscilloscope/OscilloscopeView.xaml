@@ -95,10 +95,27 @@
                                     MinWidth="80"
                                     materialDesign:HintAssist.Hint="s/div"
                                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryAccentBrush}"
-                                    ItemsSource="{Binding TimeLineDivisions}"
-                                    SelectedItem="{Binding selectSolution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    SelectedValue="{Binding SelectedTimeLineDevider}"
-                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                                    ItemsSource="{Binding ModelOscilloscope.lcv}"
+                                    SelectedItem="{Binding ModelOscilloscope.SelectTimeLineDivider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    <ComboBox.GroupStyle>
+                                        <GroupStyle>
+                                            <GroupStyle.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock
+                                                        Background="AliceBlue"
+                                                        Foreground="Black"
+                                                        Text="{Binding ModelOscilloscope.lcv.Group}" />
+                                                </DataTemplate>
+                                            </GroupStyle.HeaderTemplate>
+                                        </GroupStyle>
+                                    </ComboBox.GroupStyle>
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=ForView}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
                             </Grid>
                         </materialDesign:ColorZone>
                         <materialDesign:ColorZone
@@ -165,10 +182,15 @@
                                     MinWidth="80"
                                     materialDesign:HintAssist.Hint="Канал А"
                                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryAccentBrush}"
-                                    ItemsSource="{Binding TypeChanelCurent}"
-                                    SelectedItem="{Binding selectSolution, Mode=TwoWay}"
-                                    SelectedValue="{Binding SelectedVoltageScaleDivider}"
-                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                                    ItemsSource="{Binding ModelOscilloscope.TypeCurentOnChanels}"
+                                    SelectedItem="{Binding ModelOscilloscope.SelectTypeCurentOnChanelA, Mode=TwoWay}"
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=ForView}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
                             </Grid>
                         </materialDesign:ColorZone>
                         <materialDesign:ColorZone
@@ -185,10 +207,15 @@
                                     MinWidth="80"
                                     materialDesign:HintAssist.Hint="Канал В"
                                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryAccentBrush}"
-                                    ItemsSource="{Binding TypeChanelCurent}"
-                                    SelectedItem="{Binding selectSolution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    SelectedValue="{Binding SelectedVoltageScaleDivider}"
-                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+                                    ItemsSource="{Binding ModelOscilloscope.TypeCurentOnChanels}"
+                                    SelectedItem="{Binding ModelOscilloscope.SelectTypeCurentOnChanelB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=ForView}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
                             </Grid>
                         </materialDesign:ColorZone>
                         <materialDesign:ColorZone
@@ -212,7 +239,7 @@
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Path=ForView}" />
                                         </DataTemplate>
-                                        </ComboBox.ItemTemplate>
+                                    </ComboBox.ItemTemplate>
                                 </ComboBox>
                             </Grid>
                         </materialDesign:ColorZone>
@@ -227,13 +254,14 @@
                             <Grid>
                                 <ComboBox
                                     x:Name="ComboBoxFiltration"
+                                    Width="83"
                                     MinWidth="80"
+                                    HorizontalAlignment="Right"
                                     materialDesign:HintAssist.Hint="Фильтрация"
                                     materialDesign:TextFieldAssist.HasClearButton="True"
                                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryAccentBrush}"
-                                    ItemsSource="{Binding ModelOscilloscope.Triggers}"
-                                    SelectedItem="{Binding selectSolution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    SelectedValue="{Binding SelectedTrigger}"
+                                    ItemsSource="{Binding ModelOscilloscope.Filtrations}"
+                                    SelectedIndex="{Binding ModelOscilloscope.SelectFiltration}"
                                     Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
                             </Grid>
                         </materialDesign:ColorZone>
@@ -254,9 +282,9 @@
                     </Grid.ColumnDefinitions>
                     <Slider
                         Grid.Column="0"
-                        Margin="4,0,6,50"
                         Width="Auto"
                         Height="Auto"
+                        Margin="4,0,6,50"
                         HorizontalAlignment="Right"
                         Maximum="{Binding Text, ElementName=sliderMaxV, Mode=OneWay}"
                         Minimum="0"
@@ -292,7 +320,8 @@
                                 TextColor="Red"
                                 TitleColor="Red" />
                             <oxy:LinearAxis
-                                Title="{Binding ModelOscilloscope.TitleForAxisX}"
+                                Key="TimeLine"
+                                Title="{Binding ModelOscilloscope.SelectTimeLineDivider.AxisTitle}"
                                 MajorGridlineStyle="Dash"
                                 Maximum="500"
                                 Minimum="0"
@@ -318,16 +347,16 @@
                                 DataFieldY="Y"
                                 ItemsSource="{Binding ModelOscilloscope.GraphicA.ListValuesOnGraphic}"
                                 StrokeThickness="2"
-                                Color="Blue" 
-                                YAxisKey="AxisChanelA"/>
+                                YAxisKey="AxisChanelA"
+                                Color="Blue" />
                             <oxy:LineSeries
                                 Title="Chanel B"
                                 DataFieldX="X"
                                 DataFieldY="Y"
                                 ItemsSource="{Binding ModelOscilloscope.GraphicB.ListValuesOnGraphic}"
                                 StrokeThickness="2"
-                                Color="Red" 
-                                YAxisKey="AxisChanelB"/>
+                                YAxisKey="AxisChanelB"
+                                Color="Red" />
 
 
                             <!--<oxy:LineSeries Title="Minimum" DataFieldX="Time"

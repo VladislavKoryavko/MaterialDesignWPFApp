@@ -47,7 +47,7 @@ namespace DidaktikaApp.ViewModel.EducationalEquipment.Oscilloscope
 
 
         //public List<String> Triggers => _modelOscilloscope.TriggerStates;
-        public List<String> TypeChanelCurent => _modelOscilloscope.TypeChanelCurent;
+        //public List<String> TypeChanelCurent => _modelOscilloscope.TypeChanelCurent;
         #endregion
 
 
